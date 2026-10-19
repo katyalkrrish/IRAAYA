@@ -113,7 +113,7 @@ Push the project to GitHub, then deploy the backend and frontend as separate ser
 - **Output directory:** `dist`
 - Set `VITE_API_URL` to the deployed Render API URL, such as `https://your-api.onrender.com`.
 
-After deployment, configure the backend CORS allowlist to include the Vercel site URL, then redeploy the backend. Check the Render API `/health` endpoint and test signup, login, browsing, and cart flows on the deployed site.
+Before production, update `allow_origins` in `backend/main.py` to include your exact Vercel site URL and remove the wildcard origin, then redeploy the backend. Check the Render API `/health` endpoint and test signup, login, browsing, and cart flows on the deployed site.
 
 ## Current scope
 
