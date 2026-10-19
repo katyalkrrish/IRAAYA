@@ -92,28 +92,11 @@ Restart Vite after changing frontend environment variables.
 
 Use `backend/.env.example` as a template. Never commit `.env` files or put server-side secrets in frontend environment variables.
 
-## Deploy
+## Privacy and deployment
 
-Push the project to GitHub, then deploy the backend and frontend as separate services.
+The project is intended to run locally unless you choose otherwise. Nothing has been deployed or published by this project setup. Keep any GitHub repository private if you use GitHub, and do not deploy to a public Render or Vercel URL unless you explicitly want the site and API accessible online. Hosting access controls depend on the plan and settings you choose.
 
-### Render backend
-
-- **Root directory:** `backend`
-- **Runtime:** Python 3; set `PYTHON_VERSION` to `3.11.11`
-- **Build command:** `pip install -r requirements.txt`
-- **Start command:** `uvicorn main:app --host 0.0.0.0 --port $PORT`
-- Add the backend environment variables from the table in Render's environment settings. Do not upload or commit the local `.env` file.
-- Allow the Render service to connect to MongoDB Atlas using the appropriate Atlas network access configuration.
-
-### Vercel frontend
-
-- **Root directory:** `frontend`
-- **Framework:** Vite
-- **Build command:** `npm run build`
-- **Output directory:** `dist`
-- Set `VITE_API_URL` to the deployed Render API URL, such as `https://your-api.onrender.com`.
-
-Before production, update `allow_origins` in `backend/main.py` to include your exact Vercel site URL and remove the wildcard origin, then redeploy the backend. Check the Render API `/health` endpoint and test signup, login, browsing, and cart flows on the deployed site.
+Never commit `.env` files or put server-side secrets in frontend environment variables. `backend/.env.example` contains blank values only; copy it to `backend/.env` and fill it in locally. If you later choose to deploy, configure secrets in the host's private environment settings and restrict backend CORS to the frontend URL.
 
 ## Current scope
 
